@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 
 # Leer data
 url = 'bank-full.csv'
@@ -106,3 +107,25 @@ print(f'accuracy de Test de Entrenamiento: {arbol.score(x_test, y_test)}')
 
 # Accuracy de Validación
 print(f'accuracy de Validación: {arbol.score(x_test_out, y_test_out)}')
+
+
+## RANDOM FOREST
+
+# Seleccionar un modelo
+random_forest = RandomForestClassifier()
+
+# Entrenamiento del modelo
+random_forest.fit(x_train, y_train)
+
+# MÉTRICAS
+print('*'*50)
+print('Random Forest')
+
+# Accuracy de Test de Entrenamiento
+print(f'accuracy de Test de Entrenamiento: {random_forest.score(x_test, y_test)}')
+
+# Accuracy de Entrenamiento de Entrenamiento
+print(f'accuracy de Entrenamiento de Entrenamiento: {random_forest.score(x_train, y_train)}')
+
+# Accuracy de validacion
+print(f'accuracy de Test de Entrenamiento: {random_forest.score(x_test_out, y_test_out)}')
