@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 
 # Leer data
 url = 'bank-full.csv'
@@ -39,6 +40,25 @@ x_test_out = np.array(data_test.drop(['y'], 1))
 y_test_out = np.array(data_test.y)
 
 
+## REGRESIÓN LOGÍSTICA
 
+# Seleccionar un modelo
+logreg = LogisticRegression(solver='lbfgs', max_iter = 7600)
+
+# Entrenamiento del modelo
+logreg.fit(x_train, y_train)
+
+# MÉTRICAS
+print('*'*50)
+print('Regresión Logística')
+
+# Accuracy de Entrenamiento de Entrenamiento
+print(f'accuracy de Entrenamiento de Entrenamiento: {logreg.score(x_train, y_train)}')
+
+# Accuracy de Test de Entrenamiento
+print(f'accuracy de Test de Entrenamiento: {logreg.score(x_test, y_test)}')
+
+# Accuracy de Validación
+print(f'accuracy de Validación: {logreg.score(x_test_out, y_test_out)}')
 
 
