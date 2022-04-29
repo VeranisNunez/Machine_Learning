@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 
 
 # Leer data
@@ -26,3 +27,25 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
 x_test_out = np.array(data_test.drop(['RainTomorrow'], axis=1))
 y_test_out = np.array(data_test.RainTomorrow)
+
+
+## REGRESIÓN LOGÍSTICA
+
+# Seleccionar un modelo
+logreg = LogisticRegression(solver='lbfgs', max_iter=7600)
+
+# Entrenamiento del modelo
+logreg.fit(x_train, y_train)
+
+# MÉTRICAS
+print('*'*50)
+print('Regresion Logistica')
+
+# Accuracy de Test de Entrenamiento
+print(f'accuracy de Test de Entrenamiento: {logreg.score(x_test, y_test)}')
+
+# Accuracy de entrenamiento de Entrenamiento
+print(f'accuracy de Entrenamiento de Entrenamiento: {logreg.score(x_train, y_train)}')
+
+# Accuracy de validacion
+print(f'accuracy de Test de Entrenamiento: {logreg.score(x_test_out, y_test_out)}')
